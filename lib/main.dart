@@ -24,8 +24,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String millisecondsText = "";
-  int buttonColor = 0xFF40CA88;
   GameState gameState = GameState.readyToStart;
+  ButtonColor buttonColor = ButtonColor.ready;
   Timer? waitingTimer;
   Timer? stoppableTimer;
 
@@ -83,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   }
                 }),
                 child: ColoredBox(
-                  color: Color(buttonColor),
+                  color: Color(_getButtonColor()),
                   child: SizedBox(
                     height: 200,
                     width: 200,
@@ -107,14 +107,22 @@ class _MyHomePageState extends State<MyHomePage> {
   String _getButtonText() {
     switch (gameState) {
       case GameState.readyToStart:
-        buttonColor = 0xFF40CA88;
         return "START";
       case GameState.waiting:
-        buttonColor = 0xFFE0982D;
         return "WAIT";
       case GameState.canBeStopped:
-        buttonColor = 0xFFE02D47;
         return "STOP";
+    }
+  }
+
+  int _getButtonColor() {
+    switch (gameState) {
+      case GameState.readyToStart:
+        return 0xFF40CA88;
+      case GameState.waiting:
+        return 0xFFE0982D;
+      case GameState.canBeStopped:
+        return 0xFFE02D47;
     }
   }
 
@@ -145,3 +153,5 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 enum GameState { readyToStart, waiting, canBeStopped }
+
+enum ButtonColor { ready, waiting, stopped }
