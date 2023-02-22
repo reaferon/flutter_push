@@ -9,7 +9,7 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: MyHomePage(),
     );
   }
@@ -35,8 +35,8 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Color(0xFF282E3D),
       body: Stack(
         children: [
-          Align(
-              alignment: const Alignment(0, -0.9),
+          const Align(
+              alignment: Alignment(0, -0.8),
               child: Text(
                 "Test your\nreaction speed",
                 textAlign: TextAlign.center,
@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Text(
                       millisecondsText,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 36,
                           fontWeight: FontWeight.w500,
                           color: Colors.white),
@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               )),
           Align(
-              alignment: const Alignment(0, 0.9),
+              alignment: const Alignment(0, 0.8),
               child: GestureDetector(
                 onTap: () => setState(() {
                   switch (gameState) {
@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Center(
                       child: Text(
                         _getButtonText(),
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 38,
                             fontWeight: FontWeight.w900,
                             color: Colors.white),
@@ -123,6 +123,8 @@ class _MyHomePageState extends State<MyHomePage> {
         return 0xFFE0982D;
       case GameState.canBeStopped:
         return 0xFFE02D47;
+      default:
+        return 0xFF40CA88;
     }
   }
 
